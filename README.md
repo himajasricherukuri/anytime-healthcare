@@ -1,8 +1,4 @@
 
-![Screenshot](API report.png)
-
-
-
 
 
 
