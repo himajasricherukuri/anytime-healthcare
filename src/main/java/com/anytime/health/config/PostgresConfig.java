@@ -1,4 +1,4 @@
-package com.anytime.health.anytimehealthcare.config;
+package com.anytime.health.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;

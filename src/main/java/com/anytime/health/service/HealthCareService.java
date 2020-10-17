@@ -1,9 +1,9 @@
-package com.anytime.health.anytimehealthcare.service;
+package com.anytime.health.service;
 
 
-import com.anytime.health.anytimehealthcare.entities.Doctor;
-import com.anytime.health.anytimehealthcare.entities.DoctorResponse;
-import com.anytime.health.anytimehealthcare.repository.HealthCareRepository;
+import com.anytime.health.entities.Doctor;
+import com.anytime.health.entities.DoctorResponse;
+import com.anytime.health.repository.HealthCareRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

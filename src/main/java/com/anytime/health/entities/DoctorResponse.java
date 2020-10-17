@@ -1,4 +1,4 @@
-package com.anytime.health.anytimehealthcare.entities;
+package com.anytime.health.entities;
 
 import lombok.Builder;
 import lombok.Data;

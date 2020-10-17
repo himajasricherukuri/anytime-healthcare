@@ -1,7 +1,7 @@
-package com.anytime.health.anytimehealthcare.repository;
+package com.anytime.health.repository;
 
 
-import com.anytime.health.anytimehealthcare.entities.Doctor;
+import com.anytime.health.entities.Doctor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

@@ -1,13 +1,12 @@
-package com.anytime.health.anytimehealthcare.controller;
+package com.anytime.health.controller;
 
-import com.anytime.health.anytimehealthcare.entities.Doctor;
-import com.anytime.health.anytimehealthcare.entities.DoctorResponse;
-import com.anytime.health.anytimehealthcare.service.HealthCareService;
+import com.anytime.health.entities.Doctor;
+import com.anytime.health.entities.DoctorResponse;
+import com.anytime.health.service.HealthCareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
