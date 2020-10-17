@@ -1,0 +1,60 @@
+<html>
+<head>
+    <script>
+        function onSubmit() {
+
+            var formData = new FormData();
+            formData.append('doctor', new Blob([JSON.stringify({
+                "firstName": document.getElementById("first").value,
+                "lastName": document.getElementById("last").value,
+                "email": document.getElementById("email").value,
+                "serviceExperience": document.getElementById("service").value,
+                "phoneNumber": document.getElementById("phone").value,
+                "speciality": document.getElementById("speciality").value
+            })], {
+                type: "application/json"
+            }));
+            var boundary = Math.random().toString().substr(2);
+            fetch('http://localhost:8080/doctor/add', {
+                method: 'post',
+                body: formData
+            }).then(function (response) {
+                if (response.status !== 200) {
+                    alert("There was an error!");
+                } else {
+                    alert("Request successful");
+                }
+            }).catch(function (err) {
+                alert("There was an error!");
+            });
+            ;
+        }
+
+    </script>
+
+    <style>
+        label {
+            width: 240px;
+            display: inline-block;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<h2>Add a new Doctor Profile!!</h2>
+<form name="doctorForm">
+    <p><label> First Name : </label> <input id="first" name="first" placeholder="Enter First Name" required/>
+    <p><label> Last Name : </label> <input id="last" name="last" placeholder="Enter Last Name " required/>
+    <p><label> Email : </label> <input id="email" name="email" placeholder="Enter Your Email " required/>
+    <p><label> Service Experience : </label> <input id="service" name="service" placeholder="Enter Service Experience "
+                                                    required/>
+
+    <p><label> Phone Number : </label> <input id="phone" name="phone" placeholder="Enter Phone Number " required/>
+    <p><label> Speciality : </label> <input id="speciality" name="speciality" placeholder="Provide Speciality "
+                                            required/>
+    <p><input type="button" value="Submit" id="submit" onclick="onSubmit(); return false;"/>
+</form>
+</body>
+</html>

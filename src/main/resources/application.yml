@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/${thd.databaseName}?useSSL=false
+    hikari:
+      username: ${DB_USER}
+      password: ${DB_PASS}
+      connection-test-query: select 1
+      connection-test-projection: select 1
+    driver-class-name: org.postgresql.Driver
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    hikari:
+      username: healthcareapp
+      password: postgres

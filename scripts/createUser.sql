@@ -1,0 +1,1 @@
+CREATE user healthcareapp WITH PASSWORD 'postgres';
