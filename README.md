@@ -1,5 +1,5 @@
 
-![ScreenShot](https://raw.github.com/{username}/{repository}/{branch}/{path})
+![ScreenShot](https://raw.github.com/himajasricherukuri/anytime-health/main/src/main/resources/Screen Shot 2020-10-17 at 6.53.34 PM.png)
 
 
 
