@@ -33,9 +33,9 @@ public class Doctor {
 
     private String lastName;
 
-    private int serviceExperience;
+    private String serviceExperience;
 
-    private int phoneNumber;
+    private String phoneNumber;
 
     private String speciality;
 

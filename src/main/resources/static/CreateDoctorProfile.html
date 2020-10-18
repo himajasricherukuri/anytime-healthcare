@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:http="http://www.w3.org/1999/xhtml">
+
+<style>
+    body {
+        /*background-image: url('css.jpg');*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+    .button {
+        background-color: #FF0000; /* RED */
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+    }
+
+    .button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .button {
+        border-radius: 8px;
+    }
+
+    label {
+        width: 240px;
+        display: inline-block;
+    }
+
+    form {
+        background-color: #FFFFFF;
+        position: absolute;
+        left: 600px;
+        top: 250px;
+        right: 580px;
+    }
+
+    img {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<!--<h2>Asset Upload POC!!</h2>-->
+<div style="">
+    <img src="css.jpg" alt="Cinque Terre" width="1000" height="300">
+    <form action="/asset/uploadFromStep" method="post" enctype="multipart/form-data">
+        <font face="verdana">
+            <p>
+                <label>User : </label>
+                <input id="userId" name="userId" placeholder="Enter User" autofocus/>
+            <p>
+                <label>Primary Product Images : </label>
+                <input name="primaryImages" type="file" required multiple>
+            <p>
+                <label>Secondary Product Images : </label>
+                <input name="secondary" type="file" multiple>
+            <p>
+                <label>Swatch images : </label>
+                <input name="swatch" type="file" multiple>
+            <p>
+                <button class="button">Submit</button>
+        </font>
+    </form>
+</div>
+</body>
+</html>

@@ -6,7 +6,6 @@ import com.anytime.health.entities.DoctorPayload;
 import com.anytime.health.repository.HealthCareRepository;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,15 +31,20 @@ public class HealthCareService {
         return specialities;
     }
 
-    public DoctorPayload addDoctorProfile(final DoctorPayload doctorPayload) {
+    public DoctorPayload addDoctorProfile(final String email,
+                                          final String firstName,
+                                          final String lastName,
+                                          final String experience,
+                                          final String phone,
+                                          final String speciality) {
         String password = UUID.randomUUID().toString();
-        Doctor doctor = Doctor.builder().email(doctorPayload.getEmail())
+        Doctor doctor = Doctor.builder().email(email)
                 .password(password)
-                .firstName(doctorPayload.getFirstName())
-                .lastName(doctorPayload.getLastName())
-                .serviceExperience(doctorPayload.getServiceExperience())
-                .phoneNumber(doctorPayload.getPhoneNumber())
-                .speciality(doctorPayload.getSpeciality())
+                .firstName(firstName)
+                .lastName(lastName)
+                .serviceExperience(experience)
+                .phoneNumber(phone)
+                .speciality(speciality)
                 .build();
         healthCareRepository.save(doctor);
         return DoctorPayload.builder().build().builder().email(doctor.getEmail()).password(password).build();

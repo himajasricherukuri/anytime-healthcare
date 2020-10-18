@@ -1,6 +1,5 @@
 package com.anytime.health.controller;
 
-import com.anytime.health.entities.Doctor;
 import com.anytime.health.entities.DoctorPayload;
 import com.anytime.health.entities.HealthRequest;
 import com.anytime.health.service.HealthCareService;
@@ -13,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -43,9 +45,22 @@ public class HealthCareController {
      *Endpoints to add new Doctors to the portal.
      *
      * */
-    @PostMapping(value = "/doctor/add")
-    public ResponseEntity<DoctorPayload> addDoctorProfile(@RequestBody final DoctorPayload doctor) {
-        DoctorPayload doctorResponse = healthCareService.addDoctorProfile(doctor);
+//    @PostMapping(value = "/doctor/add")
+//    public ResponseEntity<DoctorPayload> addDoctorProfile(@RequestBody final DoctorPayload doctor) {
+//        //DoctorPayload doctorResponse = healthCareService.addDoctorProfile(doctor);
+//        return new ResponseEntity<>(doctorResponse, HttpStatus.OK);
+//    }
+
+    @PostMapping(path = "/doctor/create",
+            consumes = {"multipart/form-data"})
+    public ResponseEntity<DoctorPayload> addDoctorProfile(@RequestPart(value = "portfolio") MultipartFile[] portfolio,
+                                                          @RequestParam(value = "email", required = false) String email,
+                                                          @RequestParam(value = "firstName", required = false) String firstName,
+                                                          @RequestParam(value = "lastName", required = false) String lastName,
+                                                          @RequestParam(value = "experience", required = false) String experience,
+                                                          @RequestParam(value = "phone", required = false) String phone,
+                                                          @RequestParam(value = "speciality", required = false) String speciality) {
+        DoctorPayload doctorResponse = healthCareService.addDoctorProfile(email, firstName, lastName, experience, phone, speciality);
         return new ResponseEntity<>(doctorResponse, HttpStatus.OK);
     }
 
