@@ -1,12 +1,15 @@
 package com.anytime.health.controller;
 
 import com.anytime.health.entities.Doctor;
+import com.anytime.health.entities.DoctorRequest;
 import com.anytime.health.entities.DoctorResponse;
+import com.anytime.health.entities.HealthRequest;
 import com.anytime.health.service.HealthCareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,8 +41,8 @@ public class HealthCareController {
      *Endpoints to add new Doctors to the portal.
      *
      * */
-    @PostMapping(value = "/doctor/add", consumes = {"json/application"})
-    public ResponseEntity<DoctorResponse> addDoctorProfile(@RequestParam("doctor") Doctor doctor) {
+    @PostMapping(value = "/doctor/add")
+    public ResponseEntity<DoctorResponse> addDoctorProfile(@RequestBody final DoctorRequest doctor) {
         DoctorResponse doctorResponse = healthCareService.addDoctorProfile(doctor);
         return new ResponseEntity<>(doctorResponse, HttpStatus.OK);
     }
@@ -82,6 +85,15 @@ public class HealthCareController {
     @RequestMapping(value = "/consumer/delete", method = RequestMethod.DELETE)
     public String deletePatientProfile() {
         return "Updated the Patient profile";
+    }
+
+    /*
+    * Health Request Management
+    * */
+    @PostMapping(value = "/health/servicerequest/create")
+    public ResponseEntity<String> createHealthServiceRequest(@RequestBody final HealthRequest healthRequest) {
+        return new ResponseEntity<>("A Service request has been submitted. Someone will be with you in next few mins",
+                HttpStatus.OK);
     }
 
 

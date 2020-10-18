@@ -3,14 +3,12 @@ package com.anytime.health.entities;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @NoArgsConstructor
@@ -21,8 +19,8 @@ import javax.persistence.Id;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
 @Builder
-@Entity
-public class Doctor {
+
+public class DoctorRequest {
 
     @Id
     private String email;

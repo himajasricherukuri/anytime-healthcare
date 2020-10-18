@@ -2,6 +2,7 @@ package com.anytime.health.service;
 
 
 import com.anytime.health.entities.Doctor;
+import com.anytime.health.entities.DoctorRequest;
 import com.anytime.health.entities.DoctorResponse;
 import com.anytime.health.repository.HealthCareRepository;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,15 @@ public class HealthCareService {
         return specialities;
     }
 
-    public DoctorResponse addDoctorProfile(Doctor doctor) {
+    public DoctorResponse addDoctorProfile(final DoctorRequest doctorRequest) {
         String password = UUID.randomUUID().toString();
-        doctor = Doctor.builder()
+        Doctor doctor = Doctor.builder().email(doctorRequest.getEmail())
                 .password(password)
+                .firstName(doctorRequest.getFirstName())
+                .lastName(doctorRequest.getLastName())
+                .serviceExperience(doctorRequest.getServiceExperience())
+                .phoneNumber(doctorRequest.getPhoneNumber())
+                .speciality(doctorRequest.getSpeciality())
                 .build();
         healthCareRepository.save(doctor);
         return DoctorResponse.builder().login(doctor.getEmail()).password(password).build();
