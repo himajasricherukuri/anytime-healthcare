@@ -1,4 +1,6 @@
+== What does this application do?
 
+This application accepts requests from the client to create user profiles for Doctors who onboard to our medical services platform, consumers who are willing to avail the medical servcies online, interact with the medical practiioners to get basic medical diagnosis before heading to the hospital. This also includes a medical diagnosis delivery service using which doctor can PPE kits, other equipment which can be leveraged by people without having to head to the laboratories.
 
 
 
