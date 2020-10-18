@@ -30,3 +30,10 @@ This application accepts requests from the client to create user profiles for Do
 ==== `mvn clean install`
 
 ==== `java -jar -Dspring.profiles.active=local target/anytime-healthcare-0.0.1.jar`
+
+== Accessing the application
+* Entry point to the application
+http://localhost:8080/index.html#
+
+* Swagger documentation for more details
+http://localhost:8080/swagger-ui.html#/
