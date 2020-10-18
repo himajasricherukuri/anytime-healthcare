@@ -2,12 +2,14 @@ package com.anytime.health.service;
 
 
 import com.anytime.health.entities.Doctor;
-import com.anytime.health.entities.DoctorRequest;
-import com.anytime.health.entities.DoctorResponse;
+import com.anytime.health.entities.DoctorPayload;
 import com.anytime.health.repository.HealthCareRepository;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -30,17 +32,46 @@ public class HealthCareService {
         return specialities;
     }
 
-    public DoctorResponse addDoctorProfile(final DoctorRequest doctorRequest) {
+    public DoctorPayload addDoctorProfile(final DoctorPayload doctorPayload) {
         String password = UUID.randomUUID().toString();
-        Doctor doctor = Doctor.builder().email(doctorRequest.getEmail())
+        Doctor doctor = Doctor.builder().email(doctorPayload.getEmail())
                 .password(password)
-                .firstName(doctorRequest.getFirstName())
-                .lastName(doctorRequest.getLastName())
-                .serviceExperience(doctorRequest.getServiceExperience())
-                .phoneNumber(doctorRequest.getPhoneNumber())
-                .speciality(doctorRequest.getSpeciality())
+                .firstName(doctorPayload.getFirstName())
+                .lastName(doctorPayload.getLastName())
+                .serviceExperience(doctorPayload.getServiceExperience())
+                .phoneNumber(doctorPayload.getPhoneNumber())
+                .speciality(doctorPayload.getSpeciality())
                 .build();
         healthCareRepository.save(doctor);
-        return DoctorResponse.builder().login(doctor.getEmail()).password(password).build();
+        return DoctorPayload.builder().build().builder().email(doctor.getEmail()).password(password).build();
+    }
+
+    public DoctorPayload readDoctorProfile(final String email) {
+        DoctorPayload doctorPayload = null;
+        Optional<Doctor> doctor = healthCareRepository.findById(email);
+        return doctorPayload.builder().email(doctor.get().getEmail())
+                .firstName(doctor.get().getFirstName())
+                .lastName(doctor.get().getLastName())
+                .phoneNumber(doctor.get().getPhoneNumber())
+                .serviceExperience(doctor.get().getServiceExperience())
+                .speciality(doctor.get().getSpeciality())
+                .rating(1)
+                .build();
+    }
+
+    public List<DoctorPayload> readAllDoctors() {
+        DoctorPayload doctorPayload = null;
+        ArrayList<DoctorPayload> doctorPayloads = new ArrayList<>();
+        Iterable<Doctor> doctorFromDB = healthCareRepository.findAll();
+        doctorFromDB.forEach(doctor ->
+                doctorPayloads.add(doctorPayload.builder().email(doctor.getEmail())
+                        .firstName(doctor.getFirstName())
+                        .lastName(doctor.getLastName())
+                        .phoneNumber(doctor.getPhoneNumber())
+                        .serviceExperience(doctor.getServiceExperience())
+                        .speciality(doctor.getSpeciality())
+                        .rating(1)
+                        .build()));
+        return doctorPayloads;
     }
 }

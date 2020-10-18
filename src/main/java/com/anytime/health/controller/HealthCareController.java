@@ -1,19 +1,21 @@
 package com.anytime.health.controller;
 
 import com.anytime.health.entities.Doctor;
-import com.anytime.health.entities.DoctorRequest;
-import com.anytime.health.entities.DoctorResponse;
+import com.anytime.health.entities.DoctorPayload;
 import com.anytime.health.entities.HealthRequest;
 import com.anytime.health.service.HealthCareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class HealthCareController {
@@ -42,15 +44,21 @@ public class HealthCareController {
      *
      * */
     @PostMapping(value = "/doctor/add")
-    public ResponseEntity<DoctorResponse> addDoctorProfile(@RequestBody final DoctorRequest doctor) {
-        DoctorResponse doctorResponse = healthCareService.addDoctorProfile(doctor);
+    public ResponseEntity<DoctorPayload> addDoctorProfile(@RequestBody final DoctorPayload doctor) {
+        DoctorPayload doctorResponse = healthCareService.addDoctorProfile(doctor);
         return new ResponseEntity<>(doctorResponse, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/doctor/get/{}", method = RequestMethod.GET)
-    public String readDoctorProfile() {
-        return "Serve the Doctor profile";
+    @GetMapping(value = "/doctor/get/{email}")
+    public ResponseEntity<DoctorPayload> readDoctorProfile(@PathVariable final String email) {
+        return new ResponseEntity<>(healthCareService.readDoctorProfile(email), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/doctor/all")
+    public ResponseEntity<List<DoctorPayload>> readAllDoctorProfiles() {
+        return new ResponseEntity<>(healthCareService.readAllDoctors(), HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/doctor/update", method = RequestMethod.PUT)
     public String updateDoctorProfile() {
@@ -88,8 +96,8 @@ public class HealthCareController {
     }
 
     /*
-    * Health Request Management
-    * */
+     * Health Request Management
+     * */
     @PostMapping(value = "/health/servicerequest/create")
     public ResponseEntity<String> createHealthServiceRequest(@RequestBody final HealthRequest healthRequest) {
         return new ResponseEntity<>("A Service request has been submitted. Someone will be with you in next few mins",

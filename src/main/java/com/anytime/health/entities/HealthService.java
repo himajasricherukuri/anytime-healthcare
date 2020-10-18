@@ -13,7 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class HealthRequest {
+@Entity
+public class HealthService {
 
     @Id
     private UUID uuid;
