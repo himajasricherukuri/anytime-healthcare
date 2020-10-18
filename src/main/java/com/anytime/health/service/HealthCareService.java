@@ -22,12 +22,11 @@ public class HealthCareService {
 
 
     public ArrayList<String> readAllAvailableMedicalServices() {
-
         ArrayList<String> specialities = new ArrayList<>();
-        specialities.add("Allergy and Immunology");
-        specialities.add("Anesthesiology");
-        specialities.add("Colon and Rectal Surgery");
-        specialities.add("Dermatology");
+        Iterable<Doctor> doctorFromDB = healthCareRepository.findAll();
+        doctorFromDB.forEach(doctor -> {
+            specialities.add(doctor.getSpeciality());
+        });
         return specialities;
     }
 
